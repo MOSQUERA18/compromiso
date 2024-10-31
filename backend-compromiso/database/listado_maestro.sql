@@ -1,8 +1,8 @@
 -- MySQL dump 10.13  Distrib 8.0.38, for Win64 (x86_64)
 --
--- Host: localhost    Database: listado_maestro
+-- Host: 127.0.0.1    Database: listado_maestro
 -- ------------------------------------------------------
--- Server version	5.5.5-10.4.32-MariaDB
+-- Server version	8.0.39
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -23,21 +23,21 @@ DROP TABLE IF EXISTS `documentos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `documentos` (
-  `id_documento` bigint(20) NOT NULL AUTO_INCREMENT,
-  `id_procedimiento` bigint(20) NOT NULL,
+  `id_documento` bigint NOT NULL AUTO_INCREMENT,
+  `id_procedimiento` bigint NOT NULL,
   `nombre_documento` varchar(300) NOT NULL,
   `nombre_documento_magnetico` varchar(300) NOT NULL COMMENT 'Ruta del archivo Excel',
   `nombre_documento_visualizacion` varchar(300) NOT NULL COMMENT 'Nombre del archivo PDF generado',
   `tipo_documento` varchar(20) DEFAULT NULL,
   `codigo` varchar(500) NOT NULL,
-  `version` int(11) NOT NULL,
+  `version` int NOT NULL,
   `fecha_elaboracion` datetime NOT NULL,
-  `id_responsable` bigint(20) NOT NULL,
-  `createdAt` datetime DEFAULT current_timestamp(),
-  `updatedAt` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `id_responsable` bigint NOT NULL,
+  `createdAt` datetime DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `estado` enum('Activo','Inactivo') DEFAULT 'Activo',
   PRIMARY KEY (`id_documento`)
-) ENGINE=InnoDB AUTO_INCREMENT=531 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=531 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -58,15 +58,15 @@ DROP TABLE IF EXISTS `procedimiento`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `procedimiento` (
-  `id_procedimiento` bigint(20) NOT NULL AUTO_INCREMENT,
+  `id_procedimiento` bigint NOT NULL AUTO_INCREMENT,
   `nombre_procedimiento` varchar(300) NOT NULL,
-  `id_proceso` int(11) NOT NULL,
+  `id_proceso` int NOT NULL,
   `nombre_directorio_procedimiento` varchar(300) NOT NULL,
-  `createdAt` datetime DEFAULT current_timestamp(),
-  `updatedAt` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `createdAt` datetime DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `estado` enum('Activo','Inactivo') DEFAULT 'Activo',
   PRIMARY KEY (`id_procedimiento`)
-) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -87,14 +87,14 @@ DROP TABLE IF EXISTS `proceso`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `proceso` (
-  `id_proceso` bigint(20) NOT NULL AUTO_INCREMENT,
+  `id_proceso` bigint NOT NULL AUTO_INCREMENT,
   `nombre_proceso` varchar(300) NOT NULL,
   `nombre_directorio_proceso` varchar(300) NOT NULL,
-  `createdAt` datetime DEFAULT current_timestamp(),
-  `updatedAt` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `createdAt` datetime DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `estado` enum('Activo','Inactivo') DEFAULT 'Activo',
   PRIMARY KEY (`id_proceso`)
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -115,13 +115,13 @@ DROP TABLE IF EXISTS `responsable`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `responsable` (
-  `id_responsable` bigint(20) NOT NULL AUTO_INCREMENT,
+  `id_responsable` bigint NOT NULL AUTO_INCREMENT,
   `nombre_responsable` varchar(500) NOT NULL,
-  `createdAt` datetime DEFAULT current_timestamp(),
-  `updatedAt` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `createdAt` datetime DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `estado` enum('Activo','Inactivo') DEFAULT 'Activo',
   PRIMARY KEY (`id_responsable`)
-) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -142,16 +142,16 @@ DROP TABLE IF EXISTS `trigger_cuarentena`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `trigger_cuarentena` (
-  `id_document_cuarentena` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre_documento` varchar(400) NOT NULL,
-  `id_procedimiento` int(10) NOT NULL,
-  `version` int(10) NOT NULL,
-  `codigo_version` varchar(400) NOT NULL,
-  `nombre_documento_magnetico` varchar(400) NOT NULL,
-  `nombre_documento_visualizacion` varchar(300) NOT NULL,
-  `tipo_documento` varchar(400) NOT NULL,
-  `id_document` int(11) NOT NULL,
-  `id_responsable` int(10) NOT NULL,
+  `id_document_cuarentena` int NOT NULL AUTO_INCREMENT,
+  `nombre_documento` varchar(400) COLLATE utf8mb4_general_ci NOT NULL,
+  `id_procedimiento` int NOT NULL,
+  `version` int NOT NULL,
+  `codigo_version` varchar(400) COLLATE utf8mb4_general_ci NOT NULL,
+  `nombre_documento_magnetico` varchar(400) COLLATE utf8mb4_general_ci NOT NULL,
+  `nombre_documento_visualizacion` varchar(300) COLLATE utf8mb4_general_ci NOT NULL,
+  `tipo_documento` varchar(400) COLLATE utf8mb4_general_ci NOT NULL,
+  `id_document` int NOT NULL,
+  `id_responsable` int NOT NULL,
   `fecha_cuarentena` datetime NOT NULL,
   PRIMARY KEY (`id_document_cuarentena`)
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -175,18 +175,18 @@ DROP TABLE IF EXISTS `usuarios`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `usuarios` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(50) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  `reset_token` varchar(255) DEFAULT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `email` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `reset_token` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `reset_token_expiry` datetime DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
-  `estado` enum('Activo','Inactivo') DEFAULT NULL,
+  `estado` enum('Activo','Inactivo') COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -195,7 +195,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'marlon','cumbemarlon68@gmail.com','$2a$10$2uyWgxIpm0xBPmDzLNURoeudsN3FX4aUg.3Ctk8Rt76P7YnUMWLrW',NULL,NULL,'2024-10-11 07:30:47','2024-10-11 07:30:47','2024-10-11 07:30:47','Activo'),(2,'jesus','amayatapias5@gmail.com','$2a$10$VA7.oNK8RkDS2l3LSokbWe21vV0WMs3H7cyw3RGagj7TEwjZ8D/r2',NULL,NULL,'2024-10-11 07:32:34','2024-10-11 07:32:33','2024-10-11 07:32:33','Activo'),(3,'goldentor','uriel@pasado.com','$2a$10$I7oT1tZxoefEklAvPgxug.rl0lTRy0QfQLZ1.CCE4pJcWx61vBtAa',NULL,NULL,'2024-10-11 07:37:12','2024-10-11 07:37:12','2024-10-11 07:37:12','Activo'),(4,'goldentor','juanperez@example.com','$2a$10$VioDKesDDWh5iq3m.tiCgO/y4.32uw8tNZK8cz4cBymls7QJvIPJq',NULL,NULL,'2024-10-11 07:46:49','2024-10-11 07:46:49','2024-10-11 07:46:49','Activo'),(5,'anuel','marlon@gmail.com','$2a$10$I7XgwGMiohf/TxqCXOxcBOtM1mk61BH0TEpOzedZBzjlzlWZtYEeS',NULL,NULL,'2024-10-11 08:00:40','2024-10-11 08:00:40','2024-10-11 08:00:40','Activo'),(6,'SGC','ewdin@gmail.com','$2a$10$5dHBS8kH08dPm9GAmTBDquXfqsvUOCa2CNt56kstjUCrYXOrxJWdG',NULL,NULL,'2024-10-11 08:27:46','2024-10-11 08:27:46','2024-10-11 08:27:46','Activo'),(7,'james','cumbemarlon68@gmail.com','$2a$10$bRMrdz6JGcavVHVQfd6Vk.oq4kv4PjkJZ3uK0f654R1Xg.0eluAdu',NULL,NULL,'2024-10-11 08:48:26','2024-10-11 08:48:25','2024-10-11 08:48:25','Activo'),(8,'Super Administrador','cumbemarlon68@gmail.com','$2a$10$pEF8EBkFtYyvBKatWnVYhe5JBk12xjFWQmtHIKbrCJqIj0fXWd/Fu',NULL,NULL,'2024-10-14 14:22:56','2024-10-14 14:22:56','2024-10-14 14:22:56','Activo'),(9,'ocoro','pepe@gmail.com','$2a$10$vYn8/.yqOErYjOHLTMWMNu6WHRnbcl0MITJlh1VRL69KZ9m297xYC',NULL,NULL,'2024-10-14 14:57:56','2024-10-14 14:57:56','2024-10-14 14:57:56','Activo'),(10,'goldentor','juan.perez@example.com','$2a$10$iIMnHT0CHiCQUIvLbiHwwOwuTu0szcZe0ciIa4w4lDRaeROMV2gI6',NULL,NULL,'2024-10-14 15:15:42','2024-10-14 15:15:42','2024-10-14 15:15:42','Activo'),(11,'SGC','cumbemarlon68@gmail.com','$2a$10$wwf5NB2qlJzJbUqwuITAsuvIF7efFRR4VEjn675F0dxGaXNk3eyyi',NULL,NULL,'2024-10-14 15:18:52','2024-10-14 15:18:52','2024-10-14 15:18:52','Activo'),(12,'marlon','cumbemarlon68@gmail.com','$2a$10$6rlBaEPkKVTe6pTt00PziOErBLck4eerf3FgoC3Gcsx.OkImThwJy',NULL,NULL,'2024-10-14 15:48:01','2024-10-14 15:48:01','2024-10-14 15:48:01','Activo'),(13,'nuevoUsuario','nuevoUsuario@example.com','$2a$10$YZENBeYtlf5.LikQsutRn.MJmjQwd3dMQj95./SbdDrdin7nyzAuK',NULL,NULL,'2024-10-14 15:58:37','2024-10-14 15:58:37','2024-10-14 15:58:37','Activo'),(14,'ANUEL','anuel@gamil.com','$2a$10$dCnSqSAONoSD06/XEYaQP.4Z81kzU6vQ.HL0vWC2CACJzPXtWlZ8S',NULL,NULL,'2024-10-14 16:14:46','2024-10-14 16:14:46','2024-10-14 16:14:46','Activo'),(15,'Yair Morales','yairmoralesreyes802@gmail.com','$2a$10$wpmTSjDenFp7P5P6L0UpXuv13OmODSFq.HGs8s.7ecKLcE7dFXJta',NULL,NULL,'2024-10-14 17:25:35','2024-10-14 17:25:35','2024-10-14 17:25:35','Activo'),(16,'ÑENGO FLOW','nengoflow@gmail.com','$2a$10$msVxFxyIQuFn6xhf/benveLR5kNAHDGoMcnx/NlYQoKy6eHlCI6sy',NULL,NULL,'2024-10-14 19:51:08','2024-10-14 19:51:08','2024-10-14 19:51:08','Activo');
+INSERT INTO `usuarios` VALUES (17,'marlon','kalethsarmiento1234@gmail.com','$2a$10$4pJCcX1M9ZTYWL4b0iRDL..s7FtCRoCg8ZyhYsA.L9BjVws0yVKyi',NULL,NULL,'2024-10-31 20:35:38','2024-10-31 20:35:38','2024-10-31 20:35:38','Activo');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -208,4 +208,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-10-14 15:56:35
+-- Dump completed on 2024-10-31 15:39:01

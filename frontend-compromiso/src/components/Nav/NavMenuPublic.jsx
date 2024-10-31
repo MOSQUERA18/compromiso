@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate, Link, useLocation } from "react-router-dom";
 import logo from '../../../Public/images/logo.png';
 import { FaUser, FaBook, FaHistory, FaEye, FaCog } from 'react-icons/fa';
+import Register from "../Usuarios/Register";
 
 const NavMenuPublic = () => {
   const navigate = useNavigate();
@@ -123,6 +124,7 @@ const NavMenuPublic = () => {
           </li>
         ))}
       </ul>
+      {/* <Register/> */}
 
       <div className="text-end" style={{ marginLeft: "auto", display: "flex", gap: "10px" }}>
         <button

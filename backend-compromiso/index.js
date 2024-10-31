@@ -1,5 +1,6 @@
 // @ts-nocheck
-require('dotenv').config();
+const dotenv = require('dotenv');
+dotenv.config();
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
@@ -9,7 +10,7 @@ const { logger } = require('./config/logger.js');
 const usuariosRouter = require('./src/api/usuario/routes/usuarioRoutes.js');
 // const checkAuth = require('./middlewares/authMiddleware.js');
 const { body, validationResult } = require('express-validator'); // Importa express-validator
-
+dotenv.config();
 // Importa los routers
 const responsablesRouter = require('./src/api/responsable/routes/responsableRoutes.js');
 const procesosRouter = require('./src/api/proceso/routes/Routesproceso.js');
