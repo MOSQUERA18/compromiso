@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "ES2021",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "checkJs": true,
+    "allowJs": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": [
+    "src/**/*.js",
+    "config/logger.js"
+  ],
+  "exclude": [
+    "node_modules",
+    "src/api/auth/controllers/authController.js" // Excluye archivos específicos si es necesario
+  ]
+}

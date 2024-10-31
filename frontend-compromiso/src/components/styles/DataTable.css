@@ -1,0 +1,65 @@
+.custom-datatable {
+    margin: 2rem 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.custom-table .p-datatable-table {
+    min-width: 50rem;
+}
+
+.p-datatable .p-datatable-thead {
+    background-color: #f1f1f1;
+}
+
+.p-datatable .p-datatable-tbody {
+    background-color: #fff;
+}
+
+.p-datatable .p-datatable-tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.p-datatable .p-datatable-tbody tr:hover {
+    background-color: #e6f7ff;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.custom-download-button {
+    margin-left: auto;
+}
+
+.download-options {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+    gap: 1rem;
+}
+
+.card {
+    padding: 1.5rem;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+.p-datatable .p-column-header-content {
+    font-weight: bold;
+    color: #333;
+}
+
+.p-tag-success {
+    background-color: #28a745;
+    color: white;
+}
+
+.p-button {
+    margin-left: 0.5rem;
+}
+
+.p-tag-value {
+    font-size: 0.85rem;
+}
